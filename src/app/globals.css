@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  /* CubeOcean palette — named after in-world materials, not decoration */
+  --abyss: #050f17;      /* base background, deep sea floor */
+  --current: #0a2938;    /* mid-depth surfaces, cards */
+  --prismarine: #45c7b4; /* primary accent — prismarine block */
+  --lantern: #ffd98a;    /* warm accent — sea lantern glow */
+  --foam: #eaf6f3;       /* primary text on dark */
+  --kelp: #163b33;       /* hairline borders, dividers */
+}
+
+@theme inline {
+  --color-abyss: var(--abyss);
+  --color-current: var(--current);
+  --color-prismarine: var(--prismarine);
+  --color-lantern: var(--lantern);
+  --color-foam: var(--foam);
+  --color-kelp: var(--kelp);
+
+  --font-display: var(--font-display-raw);
+  --font-body: var(--font-body-raw);
+  --font-mono: var(--font-mono-raw);
+}
+
+body {
+  background: var(--abyss);
+  color: var(--foam);
+  font-family: var(--font-body);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.82); }
+}
+
+.status-dot {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot {
+    animation: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
